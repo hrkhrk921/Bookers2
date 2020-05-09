@@ -1,0 +1,18 @@
+<div class="body">
+  <div class="row">
+    <h1>User info</h1>
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+      <%end%>
+    <%= form_for(@user) do |f|%>
+    <label>Name</label><br>
+    <%= f.text_field :name%><br>
+    <label>Image</label><br>
+    
+    <label><%= f.attachment_field :profile_image %></label><br>
+    <label>Introduction</label><br>
+    <%= f.text_area :introduction %><br>
+    <%= f.submit "Update User", class: "btn btn-primary width"%><br>
+    <%end%>
+  </div>
+</div>

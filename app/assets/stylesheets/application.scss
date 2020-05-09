@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+    @import "bootstrap-sprockets";
+    @import "bootstrap";
+
+.body {
+	margin-top: 50px;
+}
+div.field, div.actions {
+	margin-bottom: 10px;
+}
+header {
+	color: white;
+}
+headr .navbar-left span {
+	font-size: 20px;
+	padding-top: 10px;
+}
+a:visited {
+	color: #666;
+}
+p,ol,ul,td {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+}

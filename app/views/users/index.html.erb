@@ -44,7 +44,7 @@
         <%= f.text_field :title %><br>
         <h4>Opinion</h4>
         <%= f.text_area :body %><br>
-        <%= f.submit "送信", class:"btn btn-primary col-xs-12" %>
+        <%= f.submit "Create Book", class:"btn btn-primary col-xs-12" %>
         <% end %>
     </div>
   </section>
@@ -60,19 +60,19 @@
           <th colspan="3">show</th>
         </tr>
         </thead>
-        <tbody>
         <h4>user一覧</h4>
+          <tbody>
+        <% @users.each do |user| %>
+        <tr>
           <td>
-            <a><%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %></a>
-          </td>
-          <td>
-            <%= @user.name %>
-          </td>
-          <td>
-            <a>show</a>
-          </td>
+                <a><%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %></a>
+            </td>
+          <td><%= user.name%></td>
+          <td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
+        </tr>
+        <% end %>
+      </tbody>
           
-        </tbody>
       </table>
     </div>
   </div>

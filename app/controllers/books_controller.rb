@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!
 	def new
-		@book = Book.new
+		@newbook = Book.new
 		@books = Book.all
 		@user = current_user
 	end
@@ -13,28 +13,43 @@ class BooksController < ApplicationController
 		@user = current_user
 	end
 	def show
-		@book = Book.new
-		@user = User.find(params[:id])
-		@books = @user.books
+		@newbook = Book.new
+		@book = Book.find(params[:id])
 	end
 	#投稿データの保存
 	def create
 		@book = Book.new(book_params)
 		@book.user_id = current_user.id
-		@book.save
-		redirect_to @book
+		if @book.save
+			flash[:notice] = "Book was successfully created"
+			redirect_to @book
+		else
+			flash[:notice] = "error"
+			@books = Book.all
+			@user = current_user
+			render :index
+		end
 	end
 	def update
-		book = Book.find(params[:id])
-		book.update(book_params)
-		redirect_to book_path(book)
+		@book = Book.find(params[:id])
+		if @book.update(book_params)
+			flash[:notice] = "Book was successfully updated."
+			redirect_to book_path(@book)
+		else
+			flash[:notice] = "error"
+			@books = Book.all
+			@user = current_user
+			render :edit
+		end
 	end
 	def edit
-		@user = User.find(params[:id])
 		@book = Book.find(params[:id])
 	end
 	def destroy
-		
+		@book = Book.find(params[:id])
+		@book.destroy
+		flash[:notice] = "Book was successfully destroyed."
+		redirect_to books_path
 	end
 private
     def book_params

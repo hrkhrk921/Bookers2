@@ -60,10 +60,10 @@
         </thead>
         <tbody>
         <% @books.each do |book| %>
-        <%= link_to user_path(@user.id) do %>
+        <%= link_to user_path(book.user) do %>
           <tr>
             <td>
-                <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %>
+                <%= attachment_image_tag book.user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %>
             </td>
             <% end %>
             <td>

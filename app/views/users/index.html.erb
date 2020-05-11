@@ -67,7 +67,9 @@
           <td>
                 <a><%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "40x40" %></a>
             </td>
-          <td><%= user.name%></td>
+            <td>
+              <%= user.name%>
+            </td>
           <td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
         </tr>
         <% end %>

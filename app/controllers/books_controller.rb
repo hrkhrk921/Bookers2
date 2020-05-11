@@ -5,16 +5,15 @@ class BooksController < ApplicationController
 		@books = Book.all
 		@user = current_user
 	end
-	
 	def index
 		@book = Book.new
 		@books = Book.all
-		#@user = @book.user
 		@user = current_user
 	end
 	def show
 		@newbook = Book.new
 		@book = Book.find(params[:id])
+		@user = @book.user
 	end
 	#投稿データの保存
 	def create
@@ -44,6 +43,11 @@ class BooksController < ApplicationController
 	end
 	def edit
 		@book = Book.find(params[:id])
+		@user = current_user
+		@books = Book.all
+		unless @book.user_id == current_user.id
+			redirect_to books_path
+		end
 	end
 	def destroy
 		@book = Book.find(params[:id])

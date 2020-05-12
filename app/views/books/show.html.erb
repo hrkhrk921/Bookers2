@@ -71,7 +71,7 @@
       <td>
             <% if @book.user_id == current_user.id %>
               <%= link_to "Edit", edit_book_path(@book.id) ,class:"btn-sm btn-success edit_book_10349" %>
-              <%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn-sm btn-danger destroy_book_10349"%>
+              <%= link_to "Destroy", book_path(@book.id), method: :delete,data: { confirm: 'Are you sure?' }, class:"btn-sm btn-danger destroy_book_10349"%>
             <% end %>
           </td>
     </tr>
